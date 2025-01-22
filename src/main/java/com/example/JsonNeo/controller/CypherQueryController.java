@@ -17,8 +17,8 @@ public class CypherQueryController {
 
     @PostMapping("/execute")
     public Object executeCypherQuery(@RequestBody Map<String, Object> payload) {
-        String cypherQuery = (String) payload.get("query");
+        String cypherQuery = (String) payload.get("queries");
         Map<String, Object> parameters = (Map<String, Object>) payload.getOrDefault("parameters", Map.of());
-        return cypherQueryService.executeQuery(cypherQuery, parameters);
+        return cypherQueryService.executeQuery(cypherQuery);
     }
 }

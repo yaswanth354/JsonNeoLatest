@@ -17,6 +17,9 @@ repositories {
 	mavenCentral()
 	maven { url 'https://repo.spring.io/milestone' }
 }
+springBoot {
+    mainClass.set('com.example.JsonNeo.JsonNeoApplication')
+}
 
 ext {
 	set('springAiVersion', "1.0.0-M4")
@@ -39,4 +42,9 @@ dependencyManagement {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+// Task for creating JAR file
+bootJar {
+    enabled = true
 }
