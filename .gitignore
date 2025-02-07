@@ -1,6 +1,11 @@
 HELP.md
 .gradle
 build/
+# Allow only build/libs
+!/build/libs/
+
+# Ensure contents inside build/libs are tracked
+!/build/libs/*
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
