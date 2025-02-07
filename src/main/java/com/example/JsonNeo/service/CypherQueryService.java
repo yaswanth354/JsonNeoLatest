@@ -62,6 +62,26 @@ public class CypherQueryService {
         }
         return results.toString();
     }
+    
+    public String getRelationshipBetweenNodes(String nodeA, String nodeB) {
+        String query = "MATCH (a {name: $nodeA})-[r]-(b {name: $nodeB}) " +
+                       "RETURN type(r) AS relationship, properties(r) AS details";
+        try (Session session = neo4jDriver.session()) {
+            return session.executeRead(tx -> {
+                Result result = tx.run(query, 
+                    Map.of("nodeA", nodeA, "nodeB", nodeB));
+                StringBuilder response = new StringBuilder();
+                while (result.hasNext()) {
+                    org.neo4j.driver.Record record = result.next();
+                    response.append(nodeA +" ").append(record.get("relationship").asString())
+                            .append(", Details: ").append(record.get("details").asString())
+                            		.append(" "+ nodeB +" ").append("\n");
+                }
+                return response.toString().isEmpty() ? "No relationship found" : response.toString();
+            });
+        }
+    }
+
 }
 
 

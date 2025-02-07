@@ -21,4 +21,14 @@ public class CypherQueryController {
         Map<String, Object> parameters = (Map<String, Object>) payload.getOrDefault("parameters", Map.of());
         return cypherQueryService.executeQuery(cypherQuery);
     }
+    
+    @PostMapping("/getQueries")
+    public Object getRelations(@RequestBody Map<String, Object> payload) {
+        String nodeA = (String) payload.get("nodeA");
+        String nodeB = (String) payload.get("nodeB");
+        Map<String, Object> parameters = (Map<String, Object>) payload.getOrDefault("parameters", Map.of());
+        return cypherQueryService.getRelationshipBetweenNodes(nodeA, nodeB);
+    }
+    
+    
 }
