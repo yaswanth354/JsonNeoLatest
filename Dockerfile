@@ -5,7 +5,7 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # Copy the Gradle build output (JAR file)
-COPY build/libs/JsonNeo-0.0.1-SNAPSHOT app.jar
+COPY build/libs/*.jar app.jar
 
 # Expose the application port
 EXPOSE 8080
