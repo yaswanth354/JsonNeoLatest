@@ -30,5 +30,10 @@ public class CypherQueryController {
         return cypherQueryService.getRelationshipBetweenNodes(nodeA, nodeB);
     }
     
+    @GetMapping("/hello")
+    public String getHello() {
+        return "hello world";
+    }
+    
     
 }
